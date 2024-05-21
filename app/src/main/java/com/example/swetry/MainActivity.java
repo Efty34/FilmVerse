@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
             if (itemId == R.id.home) {
                 replaceFragment(new HomeFragment());
             }
+            else if (itemId == R.id.subscriptions) {
+                replaceFragment(new GenreFragment());
+            }
 
 
             return true;

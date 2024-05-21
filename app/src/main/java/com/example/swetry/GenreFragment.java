@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class SubscriptionFragment extends Fragment {
+public class GenreFragment extends Fragment {
 
     RecyclerView recyclerView1, recyclerView2, recyclerView3, recyclerView4, recyclerView5, recyclerView6;
     List<DataClass> biographyList = new ArrayList<>();
