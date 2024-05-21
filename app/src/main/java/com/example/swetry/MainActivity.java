@@ -35,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
             int itemId = item.getItemId();
             if (itemId == R.id.home) {
                 replaceFragment(new HomeFragment());
-            }
-
-            else if (itemId == R.id.subscriptions) {
+            }else if (itemId == R.id.shorts) {
+                replaceFragment(new com.example.swetry.ShortsFragment());
+            } else if (itemId == R.id.subscriptions) {
                 replaceFragment(new GenreFragment());
             }
 
