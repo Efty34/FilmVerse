@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(new com.example.swetry.ShortsFragment());
             } else if (itemId == R.id.subscriptions) {
                 replaceFragment(new GenreFragment());
+            }else if (itemId == R.id.library) {
+                replaceFragment(new LibraryFragment());
             }
 
 
