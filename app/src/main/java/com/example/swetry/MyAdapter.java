@@ -53,9 +53,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.itemView.setOnClickListener(v -> {
             Log.d("MyAdapter", "Movie: " + movie.getTitle() + ", Genres: " + movie.getGenre());
 
-//            Intent intent = new Intent(context, DetailActivity.class);
-//            intent.putExtra("MovieData", movie);
-//            context.startActivity(intent);
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra("MovieData", movie);
+            context.startActivity(intent);
         });
     }
 
