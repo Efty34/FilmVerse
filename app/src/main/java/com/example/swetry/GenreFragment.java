@@ -19,18 +19,15 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class GenreFragment extends Fragment {
 
     RecyclerView recyclerView1, recyclerView2, recyclerView3, recyclerView4, recyclerView5, recyclerView6;
-    List<DataClass> biographyList = new ArrayList<>();
-    List<DataClass> crimeList = new ArrayList<>();
-    List<DataClass> adventureList = new ArrayList<>();
-    List<DataClass> actionList = new ArrayList<>();
-    List<DataClass> romanceList = new ArrayList<>();
-    List<DataClass> thrillerList = new ArrayList<>();
+    Map<String, List<DataClass>> genreMap = new HashMap<>();
     MyAdapter adapter;
     SearchView searchView;
     EditText searchEditText;
@@ -69,16 +66,11 @@ public class GenreFragment extends Fragment {
         recyclerView5.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView6.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        loadMoviesFromAssets1();
-        loadMoviesFromAssets2();
-        loadMoviesFromAssets3();
-        loadMoviesFromAssets4();
-        loadMoviesFromAssets5();
-        loadMoviesFromAssets6();
+        loadMoviesFromAssets();
+        setAdapters();
     }
 
-    // Biography
-    private void loadMoviesFromAssets1() {
+    private void loadMoviesFromAssets() {
         try {
             InputStream inputStream = getContext().getAssets().open("movies.json");
             Scanner scanner = new Scanner(inputStream);
@@ -96,176 +88,34 @@ public class GenreFragment extends Fragment {
                 String genres = movie.getString("Genre");
                 String[] genreList = genres.split(", ");
                 for (String genre : genreList) {
-                    if (genre.equals("Biography")) {
-                        biographyList.add(dataClass);
+                    if (!genreMap.containsKey(genre)) {
+                        genreMap.put(genre, new ArrayList<>());
                     }
+                    genreMap.get(genre).add(dataClass);
                 }
             }
         } catch (Exception e) {
             Toast.makeText(getContext(), "Error loading movies", Toast.LENGTH_SHORT).show();
         }
+    }
 
-        adapter = new MyAdapter(getActivity(), biographyList, true); // Enable resizing
+    private void setAdapters() {
+        adapter = new MyAdapter(getActivity(), genreMap.getOrDefault("Biography", new ArrayList<>()), true);
         recyclerView1.setAdapter(adapter);
-    }
 
-    // Crime
-    private void loadMoviesFromAssets2() {
-        try {
-            InputStream inputStream = getContext().getAssets().open("movies.json");
-            Scanner scanner = new Scanner(inputStream);
-            StringBuilder builder = new StringBuilder();
-            while (scanner.hasNextLine()) {
-                builder.append(scanner.nextLine());
-            }
-            JSONObject root = new JSONObject(builder.toString());
-            JSONArray movies = root.getJSONArray("movies");
-
-            for (int i = 0; i < movies.length(); i++) {
-                JSONObject movie = movies.getJSONObject(i);
-                DataClass dataClass = DataClassFactory.createFromJson(movie);
-
-                String genres = movie.getString("Genre");
-                String[] genreList = genres.split(", ");
-                for (String genre : genreList) {
-                    if (genre.equals("Crime")) {
-                        crimeList.add(dataClass);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            Toast.makeText(getContext(), "Error loading movies", Toast.LENGTH_SHORT).show();
-        }
-
-        adapter = new MyAdapter(getActivity(), crimeList, true); // Enable resizing
+        adapter = new MyAdapter(getActivity(), genreMap.getOrDefault("Crime", new ArrayList<>()), true);
         recyclerView2.setAdapter(adapter);
-    }
 
-    // Adventure
-    private void loadMoviesFromAssets3() {
-        try {
-            InputStream inputStream = getContext().getAssets().open("movies.json");
-            Scanner scanner = new Scanner(inputStream);
-            StringBuilder builder = new StringBuilder();
-            while (scanner.hasNextLine()) {
-                builder.append(scanner.nextLine());
-            }
-            JSONObject root = new JSONObject(builder.toString());
-            JSONArray movies = root.getJSONArray("movies");
-
-            for (int i = 0; i < movies.length(); i++) {
-                JSONObject movie = movies.getJSONObject(i);
-                DataClass dataClass = DataClassFactory.createFromJson(movie);
-
-                String genres = movie.getString("Genre");
-                String[] genreList = genres.split(", ");
-                for (String genre : genreList) {
-                    if (genre.equals("Adventure")) {
-                        adventureList.add(dataClass);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            Toast.makeText(getContext(), "Error loading movies", Toast.LENGTH_SHORT).show();
-        }
-
-        adapter = new MyAdapter(getActivity(), adventureList, true); // Enable resizing
+        adapter = new MyAdapter(getActivity(), genreMap.getOrDefault("Adventure", new ArrayList<>()), true);
         recyclerView3.setAdapter(adapter);
-    }
 
-    // Action
-    private void loadMoviesFromAssets4() {
-        try {
-            InputStream inputStream = getContext().getAssets().open("movies.json");
-            Scanner scanner = new Scanner(inputStream);
-            StringBuilder builder = new StringBuilder();
-            while (scanner.hasNextLine()) {
-                builder.append(scanner.nextLine());
-            }
-            JSONObject root = new JSONObject(builder.toString());
-            JSONArray movies = root.getJSONArray("movies");
-
-            for (int i = 0; i < movies.length(); i++) {
-                JSONObject movie = movies.getJSONObject(i);
-                DataClass dataClass = DataClassFactory.createFromJson(movie);
-
-                String genres = movie.getString("Genre");
-                String[] genreList = genres.split(", ");
-                for (String genre : genreList) {
-                    if (genre.equals("Action")) {
-                        actionList.add(dataClass);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            Toast.makeText(getContext(), "Error loading movies", Toast.LENGTH_SHORT).show();
-        }
-
-        adapter = new MyAdapter(getActivity(), actionList, true); // Enable resizing
+        adapter = new MyAdapter(getActivity(), genreMap.getOrDefault("Action", new ArrayList<>()), true);
         recyclerView4.setAdapter(adapter);
-    }
 
-    // Romance
-    private void loadMoviesFromAssets5() {
-        try {
-            InputStream inputStream = getContext().getAssets().open("movies.json");
-            Scanner scanner = new Scanner(inputStream);
-            StringBuilder builder = new StringBuilder();
-            while (scanner.hasNextLine()) {
-                builder.append(scanner.nextLine());
-            }
-            JSONObject root = new JSONObject(builder.toString());
-            JSONArray movies = root.getJSONArray("movies");
-
-            for (int i = 0; i < movies.length(); i++) {
-                JSONObject movie = movies.getJSONObject(i);
-                DataClass dataClass = DataClassFactory.createFromJson(movie);
-
-                String genres = movie.getString("Genre");
-                String[] genreList = genres.split(", ");
-                for (String genre : genreList) {
-                    if (genre.equals("Romance")) {
-                        romanceList.add(dataClass);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            Toast.makeText(getContext(), "Error loading movies", Toast.LENGTH_SHORT).show();
-        }
-
-        adapter = new MyAdapter(getActivity(), romanceList, true); // Enable resizing
+        adapter = new MyAdapter(getActivity(), genreMap.getOrDefault("Romance", new ArrayList<>()), true);
         recyclerView5.setAdapter(adapter);
-    }
 
-    // Thriller
-    private void loadMoviesFromAssets6() {
-        try {
-            InputStream inputStream = getContext().getAssets().open("movies.json");
-            Scanner scanner = new Scanner(inputStream);
-            StringBuilder builder = new StringBuilder();
-            while (scanner.hasNextLine()) {
-                builder.append(scanner.nextLine());
-            }
-            JSONObject root = new JSONObject(builder.toString());
-            JSONArray movies = root.getJSONArray("movies");
-
-            for (int i = 0; i < movies.length(); i++) {
-                JSONObject movie = movies.getJSONObject(i);
-                DataClass dataClass = DataClassFactory.createFromJson(movie);
-
-                String genres = movie.getString("Genre");
-                String[] genreList = genres.split(", ");
-                for (String genre : genreList) {
-                    if (genre.equals("Thriller")) {
-                        thrillerList.add(dataClass);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            Toast.makeText(getContext(), "Error loading movies", Toast.LENGTH_SHORT).show();
-        }
-
-        adapter = new MyAdapter(getActivity(), thrillerList, true); // Enable resizing
+        adapter = new MyAdapter(getActivity(), genreMap.getOrDefault("Thriller", new ArrayList<>()), true);
         recyclerView6.setAdapter(adapter);
     }
 
@@ -287,42 +137,11 @@ public class GenreFragment extends Fragment {
 
     private void searchList(String text) {
         List<DataClass> dataSearchList = new ArrayList<>();
-        // Search in biographyList
-        for (DataClass data : biographyList) {
-            if (data.getTitle().toLowerCase().contains(text.toLowerCase())) {
-                dataSearchList.add(data);
-            }
-        }
-
-        // Search in crimeList
-        for (DataClass data : crimeList) {
-            if (data.getTitle().toLowerCase().contains(text.toLowerCase())) {
-                dataSearchList.add(data);
-            }
-        }
-
-        // Repeat for other genre lists
-        for (DataClass data : adventureList) {
-            if (data.getTitle().toLowerCase().contains(text.toLowerCase())) {
-                dataSearchList.add(data);
-            }
-        }
-
-        for (DataClass data : actionList) {
-            if (data.getTitle().toLowerCase().contains(text.toLowerCase())) {
-                dataSearchList.add(data);
-            }
-        }
-
-        for (DataClass data : romanceList) {
-            if (data.getTitle().toLowerCase().contains(text.toLowerCase())) {
-                dataSearchList.add(data);
-            }
-        }
-
-        for (DataClass data : thrillerList) {
-            if (data.getTitle().toLowerCase().contains(text.toLowerCase())) {
-                dataSearchList.add(data);
+        for (Map.Entry<String, List<DataClass>> entry : genreMap.entrySet()) {
+            for (DataClass data : entry.getValue()) {
+                if (data.getTitle().toLowerCase().contains(text.toLowerCase())) {
+                    dataSearchList.add(data);
+                }
             }
         }
         if (dataSearchList.isEmpty()) {
