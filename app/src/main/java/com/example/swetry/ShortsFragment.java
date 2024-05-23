@@ -48,6 +48,7 @@ public class ShortsFragment extends Fragment {
         int color = ContextCompat.getColor(requireContext(), R.color.white);
         searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
         searchEditText.setHintTextColor(color);
+        searchEditText.setTextColor(color);
 
         initializeRecyclerView();
         setupSearchView();
