@@ -21,12 +21,12 @@ jobs:
           java-version: '17'
 
       - name: Set up Android SDK
-        uses: android-actions/setup-android@v2
+        uses: android-actions/setup-android@v3
         with:
-          api-level: 30
-          target: default
-          arch: x86_64
-          channel: stable
+          components: |
+            build-tools;30.0.3
+            platform-tools
+            platforms;android-30
 
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew
