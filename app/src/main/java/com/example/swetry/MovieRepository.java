@@ -1,5 +1,6 @@
 package com.example.swetry;
 
+
 import android.content.Context;
 import android.widget.Toast;
 
@@ -37,7 +38,18 @@ public class MovieRepository {
             while (scanner.hasNextLine()) {
                 builder.append(scanner.nextLine());
             }
-            JSONObject root = new JSONObject(builder.toString());
+            loadMoviesFromJson(builder.toString());
+        } catch (Exception e) {
+            if (loadMoviesCallback != null) {
+                loadMoviesCallback.onError("Error loading movies");
+            }
+        }
+    }
+
+    // New method to load movies from a JSON string
+    public void loadMoviesFromJson(String json) {
+        try {
+            JSONObject root = new JSONObject(json);
             JSONArray moviesArray = root.getJSONArray("movies");
             for (int i = 0; i < moviesArray.length(); i++) {
                 JSONObject movie = moviesArray.getJSONObject(i);
@@ -46,7 +58,9 @@ public class MovieRepository {
             }
             notifyObservers();
         } catch (Exception e) {
-            Toast.makeText(context, "Error loading movies", Toast.LENGTH_SHORT).show();
+            if (loadMoviesCallback != null) {
+                loadMoviesCallback.onError("Error loading movies");
+            }
         }
     }
 
@@ -72,4 +86,20 @@ public class MovieRepository {
     public List<DataClass> getMovies() {
         return movies;
     }
+
+    // Added method for testing purposes
+    public void testNotifyObservers() {
+        notifyObservers();
+    }
+
+    private LoadMoviesCallback loadMoviesCallback;
+
+    public void setLoadMoviesCallback(LoadMoviesCallback callback) {
+        this.loadMoviesCallback = callback;
+    }
+
+    public interface LoadMoviesCallback {
+        void onError(String message);
+    }
 }
+
