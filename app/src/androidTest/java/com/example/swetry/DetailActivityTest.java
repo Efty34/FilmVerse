@@ -54,4 +54,56 @@ public class DetailActivityTest {
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
                 .check(ViewAssertions.matches(withText(sampleMovie.getTitle())));
     }
+
+    @Test
+    public void testRating() {
+        // Check if the rating is displayed correctly
+        onView(withId(R.id.detailRating))
+                .perform(scrollTo())
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+                .check(ViewAssertions.matches(withText(sampleMovie.getRating())));
+    }
+
+    @Test
+    public void testYear() {
+        // Check if the year is displayed correctly
+        onView(withId(R.id.detailYear))
+                .perform(scrollTo())
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+                .check(ViewAssertions.matches(withText(sampleMovie.getYear())));
+    }
+
+    @Test
+    public void testPlot() {
+        // Check if the plot is displayed correctly
+        onView(withId(R.id.detailPlot))
+                .perform(scrollTo())
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+                .check(ViewAssertions.matches(withText(sampleMovie.getPlot())));
+    }
+
+    @Test
+    public void testGenres() {
+        // Check if the genres are displayed correctly
+        String[] genres = sampleMovie.getGenre().split(", ");
+        onView(withId(R.id.genre1))
+                .perform(scrollTo())
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+                .check(ViewAssertions.matches(withText(genres[0])));
+
+        if (genres.length > 1) {
+            onView(withId(R.id.genre2))
+                    .perform(scrollTo())
+                    .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+                    .check(ViewAssertions.matches(withText(genres[1])));
+        }
+
+        if (genres.length > 2) {
+            onView(withId(R.id.genre3))
+                    .perform(scrollTo())
+                    .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+                    .check(ViewAssertions.matches(withText(genres[2])));
+        }
+    }
+
 }
