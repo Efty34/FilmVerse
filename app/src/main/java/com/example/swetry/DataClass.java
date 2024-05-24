@@ -11,6 +11,7 @@ public class DataClass implements Parcelable {
     private String genre;
     private String plot;
 
+
     public DataClass(String title, String rating, String posterUrl, String year,String genre, String plot) {
         this.title = title;
         this.rating = rating;
