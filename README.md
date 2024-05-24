@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    
 </head>
 <body>
     <header>
@@ -12,7 +11,11 @@
             <div id="branding">
                 <h1>Filmverse</h1>
             </div>
-            
+            <nav>
+                <ul>
+                    <li></li>
+                </ul>
+            </nav>
         </div>
     </header>
     <div class="container content">
