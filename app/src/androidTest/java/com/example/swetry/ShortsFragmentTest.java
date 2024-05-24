@@ -53,6 +53,15 @@ public class ShortsFragmentTest {
                 .check(ViewAssertions.matches(withText("All Time Top")));
     }
 
+    @Test
+    public void testMovieDataLoading() {
+        // Check if the first movie title is displayed in the RecyclerView
+        // Replace with an actual movie title from your JSON file
+        onView(withText(containsString("The Shawshank Redemption")))
+                .perform(scrollTo())
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    }
+
 
 
 }
