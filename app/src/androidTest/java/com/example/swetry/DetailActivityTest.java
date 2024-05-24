@@ -54,4 +54,22 @@ public class DetailActivityTest {
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
                 .check(ViewAssertions.matches(withText(sampleMovie.getTitle())));
     }
+
+    @Test
+    public void testRating() {
+        // Check if the rating is displayed correctly
+        onView(withId(R.id.detailRating))
+                .perform(scrollTo())
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+                .check(ViewAssertions.matches(withText(sampleMovie.getRating())));
+    }
+
+    @Test
+    public void testYear() {
+        // Check if the year is displayed correctly
+        onView(withId(R.id.detailYear))
+                .perform(scrollTo())
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+                .check(ViewAssertions.matches(withText(sampleMovie.getYear())));
+    }
 }
