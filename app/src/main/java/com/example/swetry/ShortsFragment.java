@@ -113,16 +113,20 @@ public class ShortsFragment extends Fragment {
     }
 
     private void searchList(String text) {
+        String query = text.toLowerCase().trim();
         List<DataClass> dataSearchList = new ArrayList<>();
-        for (DataClass data : dataList) {
-            if (data.getTitle().toLowerCase().contains(text.toLowerCase())) {
-                dataSearchList.add(data);
+
+        if (!query.isEmpty()) {
+            for (DataClass data : dataList) {
+                if (data.getTitle().toLowerCase().contains(query)) {
+                    dataSearchList.add(data);
+                }
             }
         }
-        if (dataSearchList.isEmpty()) {
+        adapter.setSearchList(dataSearchList);
+//        adapter.notifyDataSetChanged();  // Notify adapter about data changes
+        if (dataSearchList.isEmpty() && !query.isEmpty()) {
             Toast.makeText(getActivity(), "Not Found", Toast.LENGTH_SHORT).show();
-        } else {
-            adapter.setSearchList(dataSearchList);
         }
     }
 }
