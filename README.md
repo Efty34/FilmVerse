@@ -4,78 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filmverse</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        header {
-            background: #333;
-            color: #fff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #77aaff 3px solid;
-        }
-        header a {
-            color: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 16px;
-        }
-        header ul {
-            padding: 0;
-            list-style: none;
-        }
-        header li {
-            float: left;
-            display: inline;
-            padding: 0 20px 0 20px;
-        }
-        header #branding {
-            float: left;
-        }
-        header #branding h1 {
-            margin: 0;
-        }
-        .highlight, .current a {
-            color: #77aaff;
-            font-weight: bold;
-        }
-        .dark {
-            padding: 15px;
-            background: #333;
-            color: #fff;
-            margin-top: 10px;
-        }
-        .content {
-            margin-top: 20px;
-        }
-        .content h2 {
-            color: #333;
-        }
-        .content p {
-            line-height: 1.6;
-        }
-        .content code {
-            background: #f4f4f4;
-            padding: 2px 5px;
-            font-size: 90%;
-            color: #333;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .diagrams img {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
+    
 </head>
 <body>
     <header>
