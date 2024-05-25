@@ -49,4 +49,13 @@ public class GenreFragmentTest {
                 .check(matches(ViewMatchers.isDisplayed()));
     }
 
+    @Test
+    public void testGodfatherInCrimeGenre() {
+
+        // Check if the movie "The Godfather" is displayed in the Crime genre RecyclerView
+        onView(withId(R.id.recyclerView2))
+                .perform(RecyclerViewActions.scrollTo(hasDescendant(withText("The Godfather"))));
+
+        onView(withText("The Godfather")).check(matches(withText("The Godfather")));
+    }
 }
