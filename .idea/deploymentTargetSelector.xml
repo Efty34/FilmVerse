@@ -8,6 +8,9 @@
       <SelectionState runConfigName="GenreFragmentTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="testMovieDataLoading()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
       <SelectionState runConfigName="testSearchFunctionality()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
