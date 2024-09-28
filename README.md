@@ -119,11 +119,11 @@ private void notifyObservers() {
         <section class="diagrams">
             <h2>Diagrams</h2>
             <h3>Class Diagram</h3>
-            <img src="![class diagram](https://github.com/Efty34/SWE_Project/assets/132547691/0a0bdda1-24d2-418b-8c06-b4ff0eac036e)">
+            ![class diagram](https://github.com/Efty34/SWE_Project/assets/132547691/0a0bdda1-24d2-418b-8c06-b4ff0eac036e)
             <h3>Use Case Diagram</h3>
-            <img src="![use case](https://github.com/Efty34/SWE_Project/assets/132547691/c1b35724-74b9-447f-971a-5b551ddb943f)">
+            ![use case](https://github.com/Efty34/SWE_Project/assets/132547691/c1b35724-74b9-447f-971a-5b551ddb943f)
             <h3>Sequence Diagram</h3>
-            <img src="![sequnce diagram](https://github.com/Efty34/SWE_Project/assets/132547691/67699861-89bb-40e4-8df0-50c439ab111c)">
+            ![sequnce diagram](https://github.com/Efty34/SWE_Project/assets/132547691/67699861-89bb-40e4-8df0-50c439ab111c)
         </section>
         <section>
             <h2>License</h2>
